@@ -1,0 +1,7 @@
+#!/bin/sh
+# Blocks the push if anything looks like personal contact details.
+node scripts/privacy-scan.mjs || {
+  echo ""
+  echo "Push blocked by privacy scan. Fix the findings above, then push again."
+  exit 1
+}

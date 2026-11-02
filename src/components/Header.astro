@@ -1,0 +1,24 @@
+---
+import { t, langPrefix, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = langPrefix(lang);
+const items = [
+  { href: `${p}/`, key: 'nav.home' },
+  { href: `${p}/cv/`, key: 'nav.cv' },
+  { href: `${p}/projects/`, key: 'nav.projects' },
+  { href: `${p}/journal/`, key: 'nav.journal' },
+];
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === `${p}/` ? path === href : path.startsWith(href));
+---
+<header class="site-header">
+  <a class="brand" href={`${p}/`}><b>IGU</b> / Ignacio Gil Urrutia</a>
+  <nav class="site-nav" aria-label="Main">
+    <ul>
+      {items.map((i) => (
+        <li><a href={i.href} aria-current={isCurrent(i.href) ? 'page' : undefined}>{t(lang, i.key)}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>

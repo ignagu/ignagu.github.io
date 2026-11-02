@@ -1,0 +1,65 @@
+---
+// Print-only version of the CV. scripts/build-cv-pdf.mjs turns this page into the
+// downloadable PDF, so the PDF only ever contains what is on the website.
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-sans-condensed/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '../../styles/global.css';
+import CvBody from '../../components/CvBody.astro';
+import site from '../../data/site.json';
+import cv from '../../data/cv.en.json';
+const lang = 'en' as const;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{cv.name} · CV</title>
+  </head>
+  <body class="print">
+    <main>
+      <header class="print-head">
+        <div>
+          <h1>{cv.name}</h1>
+          <p class="label">{cv.role} · {cv.company}</p>
+          <p class="label">{cv.tagline}</p>
+        </div>
+        <p class="print-url label">{site.url.replace('https://', '')}/cv{site.linkedin ? ` · ${site.linkedin.replace(/^https?:\/\/(www\.)?/, '')}` : ''}</p>
+      </header>
+      <p class="lead">{cv.positioning} {cv.summary}</p>
+      <CvBody cv={cv} lang={lang} />
+    </main>
+  </body>
+</html>
+<style is:global>
+  @page { size: A4; margin: 14mm 14mm 14mm 14mm; }
+  body.print {
+    background: #fff; color: #1b1c1e; font-size: 10pt; line-height: 1.45;
+    --paper: #fff; --ink: #1b1c1e; --ink-2: #3f4145; --ink-3: #5f6166; --line: #c9c4b8; --line-strong: #1b1c1e; --accent: #2b5a87;
+    color-scheme: light;
+  }
+  body.print main { max-width: 182mm; margin: 0 auto; }
+  body.print h1 { font-size: 24pt; }
+  body.print .print-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; border-bottom: 1.5px solid #1b1c1e; padding-bottom: 8px; margin-bottom: 10px; }
+  body.print .print-head p { margin: 2px 0 0; }
+  body.print .print-url { text-align: right; text-transform: none; }
+  body.print .lead { font-size: 11pt; margin: 0 0 4px; }
+  body.print .section { margin-top: 14px; break-inside: auto; }
+  body.print .section-head { margin-bottom: 8px; padding-bottom: 4px; }
+  body.print .section-head h2 { font-size: 13pt; }
+  body.print .section-head .marker { width: 20px; height: 20px; font-size: 7pt; }
+  body.print .dims { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  body.print .dim-value { font-size: 18pt; }
+  body.print .dim-label { font-size: 7.5pt; }
+  body.print .role { grid-template-columns: 34mm 1fr; padding: 8px 0; break-inside: avoid; }
+  body.print .role h3 { font-size: 11.5pt; margin-bottom: 4px; }
+  body.print .highlights { gap: 3px; }
+  body.print .metric { font-size: 7.5pt; padding: 1px 6px; }
+  body.print .metric b { font-size: 8.5pt; }
+  body.print .cv-cols { grid-template-columns: 1.3fr 1fr 0.8fr; gap: 0 20px; }
+  body.print .chips li { font-size: 7.5pt; padding: 2px 6px; }
+  body.print .label { font-size: 7.5pt; }
+</style>

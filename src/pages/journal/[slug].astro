@@ -1,0 +1,25 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n';
+import { formatDate } from '../../lib/format';
+import { getPosts } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const items = await getPosts('en');
+  return items.map(({ entry, sheet, slug }) => ({ params: { slug }, props: { entry, sheet } }));
+}
+const { entry, sheet } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<Base title={d.title} description={d.summary} lang={d.lang} sheet={sheet} sheetTitle={d.title} date={d.date} type="article">
+  <article>
+    <header class="page-head">
+      <span class="label">{sheet} · <a href="/journal/">{t(d.lang, 'journal.title')}</a> · <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time></span>
+      <h1>{d.title}</h1>
+      <p class="lead">{d.summary}</p>
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</Base>

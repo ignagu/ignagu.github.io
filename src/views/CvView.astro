@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import CvBody from '../components/CvBody.astro';
+import site from '../data/site.json';
+import cvEn from '../data/cv.en.json';
+import { t, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const cv = { en: cvEn }[lang];
+---
+<Base
+  title="CV"
+  description={`CV of ${cv.name}, ${cv.role} at ${cv.company}. ${cv.positioning}`}
+  lang={lang}
+  sheet="A-02"
+  sheetTitle="Curriculum vitae"
+  type="profile"
+>
+  <header class="page-head">
+    <span class="label">A-02 · Curriculum vitae</span>
+    <h1>{cv.name}</h1>
+    <p class="label">{cv.role} · {cv.company}</p>
+    <p class="lead">{cv.positioning}</p>
+    <p class="sub">{cv.summary}</p>
+    <p class="actions">
+      <a class="btn" href={site.cvPdf} download>
+        <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M1.5 12.5h11" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+        {t(lang, 'cv.download')}
+      </a>
+      {site.linkedin && <a class="btn ghost" href={site.linkedin} rel="me noopener">LinkedIn</a>}
+    </p>
+  </header>
+  <CvBody cv={cv} lang={lang} />
+</Base>
+<style>
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+</style>

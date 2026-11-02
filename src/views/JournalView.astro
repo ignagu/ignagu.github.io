@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Register from '../components/Register.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { t, langPrefix, type Lang } from '../i18n';
+import { getPosts } from '../lib/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = langPrefix(lang);
+const posts = await getPosts(lang);
+---
+<Base title={t(lang, 'journal.title')} description={t(lang, 'journal.intro')} lang={lang} sheet="C-00" sheetTitle="Journal, revision log">
+  <header class="page-head">
+    <span class="label">C-00 · {t(lang, 'journal.log')}</span>
+    <h1>{t(lang, 'journal.title')}</h1>
+    <p class="lead">{t(lang, 'journal.intro')}</p>
+  </header>
+  <section class="section" aria-labelledby="log">
+    <SectionHead ref="C" title={t(lang, 'journal.log')} id="log" />
+    <Register lang={lang} caption={t(lang, 'journal.log')}
+      rows={posts.map(({ entry, sheet, slug }) => ({ sheet, href: `${p}/journal/${slug}/`, title: entry.data.title, summary: entry.data.summary, date: entry.data.date }))} />
+  </section>
+</Base>

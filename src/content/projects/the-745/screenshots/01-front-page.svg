@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <rect width="960" height="600" fill="#ebe7dc"/>
+  <g stroke="#bdb7a8" stroke-width="1">
+    <path d="M0 150H960M0 300H960M0 450H960M240 0V600M480 0V600M720 0V600"/>
+  </g>
+  <rect x="80" y="70" width="800" height="460" fill="#f3f0e8" stroke="#1b1c1e"/>
+  <path d="M80 70L880 530M880 70L80 530" stroke="#bdb7a8"/>
+  <rect x="300" y="250" width="360" height="100" fill="#f3f0e8" stroke="#1b1c1e"/>
+  <text x="480" y="292" text-anchor="middle" font-family="monospace" font-size="22" fill="#1b1c1e">THE 7:45</text>
+  <text x="480" y="325" text-anchor="middle" font-family="monospace" font-size="14" fill="#2b5a87">PLACEHOLDER SCREENSHOT</text>
+</svg>

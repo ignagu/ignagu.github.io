@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Register from '../components/Register.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { t, langPrefix, type Lang } from '../i18n';
+import { getProjects } from '../lib/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = langPrefix(lang);
+const projects = await getProjects(lang);
+---
+<Base title={t(lang, 'projects.title')} description={t(lang, 'projects.intro')} lang={lang} sheet="B-00" sheetTitle="Projects, drawing register">
+  <header class="page-head">
+    <span class="label">B-00 · {t(lang, 'projects.register')}</span>
+    <h1>{t(lang, 'projects.title')}</h1>
+    <p class="lead">{t(lang, 'projects.intro')}</p>
+  </header>
+  <section class="section" aria-labelledby="reg">
+    <SectionHead ref="B" title={t(lang, 'projects.register')} id="reg" />
+    <Register
+      lang={lang}
+      caption={t(lang, 'projects.register')}
+      showStatus
+      rows={projects.map(({ entry, sheet }) => ({
+        sheet, href: `${p}/projects/${entry.id}/`, title: entry.data.title, summary: entry.data.summary, date: entry.data.date,
+        status: entry.data.status === 'placeholder' ? 'In progress' : 'Issued',
+      }))}
+    />
+  </section>
+</Base>
