@@ -5,9 +5,9 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 ---
 <footer class="site-footer">
-  <span>{site.name} · {site.tagline}</span>
+  <span>{site.handle} · {site.tagline}</span>
   <span>
-    {site.linkedin && <><a href={site.linkedin} rel="me noopener">{t(lang, 'footer.contact')}</a> · </>}
+    {site.linkedin && <><a href={site.linkedin} rel="noopener">{t(lang, 'footer.contact')}</a> · </>}
     {t(lang, 'footer.note')}
   </span>
 </footer>

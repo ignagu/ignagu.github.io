@@ -163,12 +163,6 @@ p { margin: 0 0 1em; }
 }
 .brand { font-family: var(--font-mono); font-size: 0.85rem; text-decoration: none; letter-spacing: 0.02em; }
 .brand b { font-weight: 600; }
-.site-nav ul { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 0; padding: 0; }
-.site-nav a {
-  font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em;
-  text-decoration: none; padding: 6px 0; display: inline-block;
-}
-.site-nav a[aria-current='page'] { color: var(--accent); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
 /* ---------- Title block ---------- */
 .title-block {
@@ -211,35 +205,8 @@ p { margin: 0 0 1em; }
 }
 .section-head h2 { font-size: 1.35rem; }
 
-/* ---------- Dimension strip (key numbers) ---------- */
-.dims { display: grid; gap: 28px; grid-template-columns: 1fr; margin: 0; padding: 0; list-style: none; }
-@media (min-width: 640px) { .dims { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .dims { grid-template-columns: repeat(4, 1fr); } }
-.dim { display: grid; gap: 10px; }
-.dim-line {
-  position: relative; height: 18px;
-  border-left: 1px solid var(--ink); border-right: 1px solid var(--ink);
-}
-.dim-line::before {
-  content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--ink);
-}
-.dim-line::after {
-  /* arrowheads drawn as two small triangles */
-  content: ''; position: absolute; inset: 0;
-  background:
-    linear-gradient(to bottom right, transparent 49%, var(--ink) 50%) left 0 top 5px / 6px 4px no-repeat,
-    linear-gradient(to top right, transparent 49%, var(--ink) 50%) left 0 top 9px / 6px 4px no-repeat,
-    linear-gradient(to bottom left, transparent 49%, var(--ink) 50%) right 0 top 5px / 6px 4px no-repeat,
-    linear-gradient(to top left, transparent 49%, var(--ink) 50%) right 0 top 9px / 6px 4px no-repeat;
-}
-.dim-value {
-  font-family: var(--font-cond); font-weight: 600; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1;
-  letter-spacing: -0.02em; color: var(--accent); white-space: nowrap;
-}
-.dim-value .unit { font-size: 0.5em; font-weight: 500; letter-spacing: 0; margin-left: 0.15em; color: var(--ink); }
-.dim-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-2); line-height: 1.4; }
 
-/* ---------- Register table (projects, journal, index) ---------- */
+/* ---------- Register table (project list) ---------- */
 .register { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
 .register th {
   text-align: left; font-family: var(--font-mono); font-weight: 400; font-size: 0.68rem; text-transform: uppercase;

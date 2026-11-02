@@ -1,10 +1,10 @@
 // Privacy scan. Run before every push (the pre-push hook does it) and in CI before deploy.
 //
 //   node scripts/privacy-scan.mjs          scan repo files + git history
-//   node scripts/privacy-scan.mjs --dist   also scan the built site in dist/ (HTML + PDF text)
+//   node scripts/privacy-scan.mjs --dist   also scan the built site in dist/
 //
 // Checks: email addresses, phone numbers, street addresses, image metadata (EXIF/GPS),
-// em dashes in copy, forbidden files (PDFs outside dist, /private), and an optional
+// em dashes in copy, forbidden files (PDFs, zips, /private), and an optional
 // personal blocklist (children's names, your city...) kept OUT of the repo in
 // private/blocklist.txt or the PRIVACY_BLOCKLIST environment variable / CI secret.
 import { execSync } from 'node:child_process';
@@ -64,7 +64,7 @@ for (const f of files) {
   if (!existsSync(f) || SKIP_FILES.has(f.split('/').pop())) continue;
   const ext = extname(f).toLowerCase();
   if (f.startsWith('private/')) add(f, 'forbidden file', 'files in /private must never be committed');
-  if (ext === '.pdf') add(f, 'forbidden file', 'PDFs must not be committed (the CV PDF is generated at build time)');
+  if (ext === '.pdf') add(f, 'forbidden file', 'PDFs must not be committed (keep originals in /private)');
   if (ext === '.zip') add(f, 'forbidden file', 'commit the skill/ folder, not a zip (zips are built automatically)');
   if (IMG_EXT.has(ext)) scanImage(f, readFileSync(f));
   else if (TEXT_EXT.has(ext)) scanText(f, readFileSync(f, 'utf8'), { copy: COPY_DIRS.some((r) => r.test(f)) });

@@ -6,7 +6,7 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/build-skills.mjs && node scripts/build-cv-pdf.mjs",
+    "build": "astro build && node scripts/build-skills.mjs",
     "preview": "astro preview",
     "privacy:scan": "node scripts/privacy-scan.mjs",
     "check": "npm run build && node scripts/privacy-scan.mjs --dist",

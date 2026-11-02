@@ -22,7 +22,7 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
 <Base title={d.title} description={d.summary} lang={lang} sheet={sheet} sheetTitle={d.title} date={d.date} type="article"
   image={d.cover && d.cover.format !== 'svg' ? d.cover.src : undefined}>
   <header class="page-head">
-    <span class="label">{sheet} · <a href="/projects/">{t(lang, 'projects.title')}</a> · {formatDate(d.date)}{d.status === 'placeholder' && ' · In progress'}</span>
+    <span class="label">{sheet} · <a href="/">{t(lang, 'projects.title')}</a> · {formatDate(d.date)}{d.status === 'placeholder' && ' · In progress'}</span>
     <h1>{d.title}</h1>
     <p class="lead">{d.summary}</p>
     <p><a class="btn" href={skillHref} download>

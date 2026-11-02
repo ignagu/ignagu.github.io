@@ -1,8 +1,9 @@
 {
   "url": "https://ignagu.github.io",
-  "name": "Ignacio Gil Urrutia",
-  "tagline": "Operational AI · Digital Twins · AI Engineering",
+  "name": "AI Projects",
+  "handle": "ignagu",
+  "tagline": "Small tools built with Claude, ready to reuse",
+  "description": "Small AI tools built with Claude, each with a three step guide for beginners and a downloadable Claude Skill.",
   "linkedin": "",
-  "cvPdf": "/downloads/cv-ignacio-gil-urrutia.pdf",
-  "_notes": "linkedin: paste your full profile URL (https://www.linkedin.com/in/...). Leave empty to hide all LinkedIn links."
+  "_notes": "linkedin: paste your full profile URL (https://www.linkedin.com/in/...). Leave empty to hide the LinkedIn link."
 }

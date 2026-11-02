@@ -19,16 +19,4 @@ const projects = defineCollection({
     }),
 });
 
-const journal = defineCollection({
-  // One Markdown file per post: src/content/journal/YYYY-MM-DD-slug.md
-  loader: glob({ pattern: '*.md', base: './src/content/journal' }),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    date: z.coerce.date(),
-    lang: z.enum(['en']).default('en'),
-    draft: z.boolean().default(false),
-  }),
-});
-
-export const collections = { projects, journal };
+export const collections = { projects };

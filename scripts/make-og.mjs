@@ -1,5 +1,5 @@
 // One-off: renders public/og/default.png (1200x630) for social previews.
-// Contains only name, tagline and site URL. Re-run after changing the text:
+// Contains only the site title and URL, nothing personal. Re-run after changing the text:
 //   node scripts/make-og.mjs
 import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
@@ -17,9 +17,9 @@ h1{font-family:C;font-weight:600;font-size:112px;line-height:.92;letter-spacing:
 .t{font-size:28px;color:#2b5a87}
 .tb{position:absolute;right:36px;bottom:36px;display:flex;border-top:2px solid #1b1c1e;border-left:2px solid #1b1c1e;font-size:18px;background:#f3f0e8}
 .tb div{padding:12px 18px;border-left:1px solid #bdb7a8}.tb div:first-child{border-left:0}.tb span{display:block;font-size:12px;color:#6a6c70;letter-spacing:.08em}
-</style></head><body><div class="f"></div><div class="c"><div class="l">A-01 · General arrangement</div>
-<h1>Ignacio<br>Gil Urrutia</h1><div class="t">Operational AI · Digital Twins · AI Engineering</div></div>
-<div class="tb"><div><span>DRAWING</span>ignagu.github.io</div><div><span>SHEET</span>A-01</div><div><span>SCALE</span>NTS</div></div></body></html>`;
+</style></head><body><div class="f"></div><div class="c"><div class="l">B-00 · Drawing register</div>
+<h1>AI projects,<br>ready to reuse</h1><div class="t">Small tools built with Claude</div></div>
+<div class="tb"><div><span>DRAWING</span>ignagu.github.io</div><div><span>SHEET</span>B-00</div><div><span>SCALE</span>NTS</div></div></body></html>`;
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
 await p.setContent(html);
