@@ -103,7 +103,7 @@ p { margin: 0 0 1em; }
   font-size: 0.9rem; text-decoration: none; color: var(--ink-2); padding: 8px 12px; border-radius: 999px;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
-.header-links a:hover { background: var(--surface-2); color: var(--ink); }
+@media (hover: hover) { .header-links a:hover { background: var(--surface-2); color: var(--ink); } }
 
 /* ---------- Buttons and chips ---------- */
 .btn {
@@ -112,13 +112,14 @@ p { margin: 0 0 1em; }
   background: var(--ink); color: var(--bg); font-size: 0.95rem; font-weight: 500; text-decoration: none;
   transition: transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
-.btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgb(226 72 28 / 0.6); }
+@media (hover: hover) { .btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgb(226 72 28 / 0.6); } }
 .btn.secondary { background: transparent; color: var(--ink); border-color: var(--line-2); }
-.btn.secondary:hover { background: var(--surface); border-color: var(--ink); box-shadow: none; }
+@media (hover: hover) { .btn.secondary:hover { background: var(--surface); border-color: var(--ink); box-shadow: none; } }
 .btn svg { width: 16px; height: 16px; flex: none; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .chip {
+  max-width: 100%;
   display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px;
   border-radius: 999px; border: 1px solid var(--line-2); background: var(--surface);
   font-size: 0.82rem; color: var(--ink-2); white-space: nowrap;
