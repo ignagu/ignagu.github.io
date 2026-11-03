@@ -17,37 +17,45 @@ const lang = entry.data.lang;
 const { Content } = await render(entry);
 const d = entry.data;
 const skillHref = `/downloads/skills/${entry.id}.zip`;
+const downloadIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M2.5 13.5h11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ---
 <Base title={d.title} description={d.summary} lang={lang} type="article"
   image={d.cover && d.cover.format !== 'svg' ? d.cover.src : undefined}>
-  <header class="page-head">
-    <p class="meta crumbs">
-      <a href="/">← {t(lang, 'projects.back')}</a>
-      <span aria-hidden="true">·</span>
-      <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time>
-      {d.status === 'placeholder' && <span class="tag">{t(lang, 'projects.inProgress')}</span>}
-    </p>
-    <h1>{d.title}</h1>
-    <p class="lead">{d.summary}</p>
-    {d.schedule && <p class="meta">{d.schedule}</p>}
-    <p><a class="btn" href={skillHref} download>
-      <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M1.5 12.5h11" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-      {t(lang, 'projects.download')}
-    </a></p>
+  <header class="wrap p-hero">
+    <a class="back meta rise" href="/">← {t(lang, 'projects.back')}</a>
+    <ul class="chips rise" aria-label="Tags">
+      {d.schedule && <li class="chip accent"><span class="dot" aria-hidden="true"></span>{t(lang, 'projects.daily')}</li>}
+      {d.status === 'placeholder' && <li class="chip muted">{t(lang, 'projects.inProgress')}</li>}
+      <li class="chip muted"><time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time></li>
+    </ul>
+    <h1 class="display rise rise-2">{d.title}</h1>
+    <p class="p-lead rise rise-3">{d.summary}</p>
+    <div class="actions rise rise-4">
+      <a class="btn" href={skillHref} download><Fragment set:html={downloadIcon} />{t(lang, 'projects.download')}</a>
+      <a class="btn secondary" href="#how">{t(lang, 'projects.howJump')}</a>
+    </div>
   </header>
 
-  <section class="section" aria-labelledby="what">
-    <h2 id="what">{t(lang, 'projects.what')}</h2>
+  {d.cover && (
+    <div class="wrap">
+      <div class="p-cover rise rise-4">
+        <Image src={d.cover} alt="" widths={[800, 1600, 2320]} sizes="(min-width: 1160px) 1100px, 100vw" loading="eager" />
+      </div>
+    </div>
+  )}
+
+  <section class="wrap row" aria-labelledby="what">
+    <h2 id="what" class="display">{t(lang, 'projects.what')}</h2>
     <div class="prose"><Content /></div>
   </section>
 
   {d.screenshots.length > 0 && (
-    <section class="section" aria-labelledby="shots">
-      <h2 id="shots">{t(lang, 'projects.screens')}</h2>
+    <section class="wrap row" aria-labelledby="shots">
+      <h2 id="shots" class="display">{t(lang, 'projects.screens')}</h2>
       <div class="shots">
-        {d.screenshots.map((s, i) => (
+        {d.screenshots.map((s) => (
           <figure>
-            <Image src={s.src} alt={s.alt} widths={[480, 960]} sizes="(min-width: 860px) 50vw, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
+            <Image src={s.src} alt={s.alt} widths={[480, 960, 1440]} sizes="(min-width: 900px) 360px, 100vw" loading="lazy" />
             {s.caption && <figcaption class="meta">{s.caption}</figcaption>}
           </figure>
         ))}
@@ -55,50 +63,94 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
     </section>
   )}
 
-  <section class="section" aria-labelledby="how">
-    <h2 id="how">{t(lang, 'projects.how')}</h2>
-    <p class="sub">{t(lang, 'projects.howIntro')}</p>
-    <ol class="steps">
-      {d.steps.map((s, i) => (
-        <li><span class="step-no" aria-hidden="true">{i + 1}</span><span set:html={s} /></li>
-      ))}
-    </ol>
-    {d.schedule && (
-      <aside class="schedule" aria-label={t(lang, 'projects.scheduleTitle')}>
-        <p class="schedule-title">{t(lang, 'projects.scheduleTitle')}: {d.schedule.charAt(0).toLowerCase() + d.schedule.slice(1)}.</p>
-        <p>{t(lang, 'projects.scheduleText')}</p>
-        <p class="meta">{t(lang, 'projects.schedulePlan')}</p>
-      </aside>
-    )}
-    <p class="download">
-      <a class="btn" href={skillHref} download>{t(lang, 'projects.download')}</a>
-      <span class="meta">{t(lang, 'projects.downloadNote')}</span>
-    </p>
+  <section id="how" class="wrap row" aria-labelledby="how-title">
+    <div>
+      <h2 id="how-title" class="display">{t(lang, 'projects.how')}</h2>
+      <p class="row-sub">{t(lang, 'projects.howIntro')}</p>
+    </div>
+    <div>
+      <ol class="steps">
+        {d.steps.map((s, i) => (
+          <li>
+            <span class="step-no display" aria-hidden="true">{i + 1}</span>
+            <p set:html={s} />
+          </li>
+        ))}
+      </ol>
+      {d.schedule && (
+        <aside class="schedule" aria-labelledby="sched-title">
+          <span class="chip accent"><span class="dot" aria-hidden="true"></span>{d.schedule}</span>
+          <h3 id="sched-title">{t(lang, 'projects.scheduleTitle')}</h3>
+          <p>{t(lang, 'projects.scheduleText')}</p>
+          <p class="meta">{t(lang, 'projects.schedulePlan')}</p>
+        </aside>
+      )}
+      <div class="download">
+        <a class="btn" href={skillHref} download><Fragment set:html={downloadIcon} />{t(lang, 'projects.download')}</a>
+        <span class="meta">{t(lang, 'projects.downloadNote')}</span>
+      </div>
+    </div>
   </section>
 
-  <section class="section" aria-labelledby="fb">
-    <h2 id="fb">{t(lang, 'projects.feedback')}</h2>
-    <p class="sub">{t(lang, 'projects.feedbackIntro')}</p>
-    <TallyEmbed formId={d.tallyId} title={d.title} lang={lang} />
+  <section class="wrap row" aria-labelledby="fb">
+    <div>
+      <h2 id="fb" class="display">{t(lang, 'projects.feedback')}</h2>
+      <p class="row-sub">{t(lang, 'projects.feedbackIntro')}</p>
+    </div>
+    <div class="feedback">
+      <TallyEmbed formId={d.tallyId} title={d.title} lang={lang} />
+    </div>
   </section>
 </Base>
 
 <style>
-  .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0; }
-  .crumbs a { text-decoration: none; }
-  .crumbs a:hover { text-decoration: underline; }
-  .shots { display: grid; gap: 24px; }
+  .p-hero { padding-top: clamp(40px, 7vw, 88px); padding-bottom: 40px; display: grid; gap: 18px; justify-items: start; }
+  .back { text-decoration: none; padding: 6px 0; }
+  .back:hover { color: var(--ink); }
+  .p-hero h1 { font-size: clamp(3rem, 8.5vw, 6.75rem); max-width: 14ch; margin-top: 6px; }
+  .p-lead { font-size: clamp(1.15rem, 1.9vw, 1.4rem); line-height: 1.5; color: var(--ink-2); max-width: 46ch; margin: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+
+  .p-cover { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-lg); aspect-ratio: 16 / 9; background: var(--surface-2); }
+  .p-cover :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .row { display: grid; gap: 20px 48px; margin-top: clamp(56px, 8vw, 112px); scroll-margin-top: 80px; }
+  @media (min-width: 900px) {
+    .row { grid-template-columns: 300px 1fr; }
+    .row > :first-child { position: sticky; top: 96px; align-self: start; }
+  }
+  .row h2 { font-size: clamp(2.1rem, 3.6vw, 2.9rem); }
+  .row-sub { color: var(--ink-2); margin: 12px 0 0; max-width: 30ch; }
+
+  .shots { display: grid; gap: 20px; }
   @media (min-width: 760px) { .shots { grid-template-columns: repeat(2, 1fr); } }
   figure { margin: 0; }
-  figure :global(img) { border: 1px solid var(--line); border-radius: 6px; width: 100%; }
-  figcaption { margin-top: 8px; }
-  .steps { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 16px; }
-  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
-  .steps li { display: grid; align-content: start; gap: 8px; padding: 20px; background: var(--paper-2); border-radius: 6px; }
-  .step-no { font-family: var(--font-head); font-weight: 600; font-size: 1.6rem; line-height: 1; color: var(--accent); }
-  .schedule { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; margin: 0 0 28px; max-width: var(--measure); }
-  .schedule p { margin: 0 0 6px; }
-  .schedule-title { font-weight: 600; }
-  .download { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-  .sub { color: var(--ink-2); max-width: var(--measure); }
+  figure :global(img) { border-radius: var(--radius-sm); border: 1px solid var(--line); box-shadow: var(--shadow); width: 100%; }
+  figcaption { margin-top: 10px; }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .steps li {
+    display: grid; grid-template-columns: 52px 1fr; gap: 18px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px;
+  }
+  .steps li p { margin: 0; color: var(--ink-2); }
+  .steps li p :global(strong) { color: var(--ink); font-weight: 600; display: block; margin-bottom: 2px; }
+  .steps li p :global(em) { font-style: normal; color: var(--ink); background: var(--surface-2); padding: 0.05em 0.4em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .step-no {
+    width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent-ink); font-size: 1.75rem; line-height: 1;
+  }
+
+  .schedule {
+    margin-top: 14px; padding: 24px; border-radius: var(--radius);
+    background: var(--ink); color: var(--bg); display: grid; gap: 10px; justify-items: start;
+  }
+  .schedule h3 { font-size: 1.15rem; }
+  .schedule p { margin: 0; color: rgb(247 246 242 / 0.78); max-width: 60ch; }
+  .schedule .meta { color: rgb(247 246 242 / 0.6); }
+  .schedule .chip.accent { background: var(--accent); color: #fff; }
+
+  .download { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 28px; }
+
+  .feedback { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
 </style>

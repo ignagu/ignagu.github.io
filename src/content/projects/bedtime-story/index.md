@@ -4,11 +4,8 @@ summary: A calm, age appropriate story to read aloud. Set it up once and a new s
 date: 2026-11-01
 status: placeholder
 schedule: Every evening, at the time you choose
-cover: ./screenshots/01-story.svg
-screenshots:
-  - src: ./screenshots/01-story.svg
-    alt: Placeholder for a screenshot of a generated bedtime story.
-    caption: A finished story, ready to read
+cover: ./cover.svg
+screenshots: []
 steps:
   - "<strong>Add the Skill to Claude.</strong> Download it with the button on this page. In Claude, open <em>Customize</em>, then <em>Skills</em>, click <em>+</em>, choose <em>Upload a skill</em>, pick the .zip, and switch it on."
   - "<strong>Make your first story.</strong> In a new chat, type: <em>Write a bedtime story.</em> Claude asks a few quick questions (age, length, favourite things, time) and writes tonight's story."
@@ -20,4 +17,4 @@ Every evening, a new story. You tell Claude the listener's age, how long the sto
 
 Stories change from night to night, and you can keep a recurring hero so they feel like they come from the same storyteller.
 
-**This page is a placeholder.** Screenshots and the final Skill are coming soon.
+**In progress.** Real screenshots and the final Skill are coming soon. The illustration above shows the idea.

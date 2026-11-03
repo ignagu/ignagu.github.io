@@ -50,6 +50,7 @@ Folder layout:
 ```
 src/content/projects/my-project/
 ├── index.md
+├── cover.svg        (preview image, 16:9)
 ├── screenshots/
 │   └── 01-main.png
 └── skill/
@@ -89,4 +90,4 @@ The site is English first and ready for Spanish and French:
 
 ## Design notes
 
-Plain and editorial: warm off-white paper (dark mode follows the system), ink text, one blue accent. Typefaces are IBM Plex Sans, Sans Condensed (headings) and Mono (dates), self hosted. Dates are DD/MM/YYYY, units are metric, and copy uses no em dashes (the scan checks this).
+Contemporary editorial, light only (no dark mode). Warm white background, near-black ink and one vermilion accent (`#e2481c`). Headlines in Instrument Serif, with the italic used for emphasis; text and interface in Geist; small details in Geist Mono. All fonts are self hosted. Projects appear as cards with a preview image: put a `cover.svg` or `cover.png` (16:9) in the project folder and set `cover: ./cover.svg`. Dates are DD/MM/YYYY, units are metric, and copy uses no em dashes (the scan checks this).

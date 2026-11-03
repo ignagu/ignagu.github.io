@@ -1,37 +1,102 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { t, langPrefix, type Lang } from '../i18n';
-import { formatDate } from '../lib/format';
 import { getProjects } from '../lib/content';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = langPrefix(lang);
 const projects = await getProjects(lang);
+const how = [1, 2, 3].map((n) => ({ n, title: t(lang, `home.how${n}t`), text: t(lang, `home.how${n}`) }));
 ---
 <Base title={site.name} description={site.description} lang={lang}>
-  <header class="page-head">
-    <h1>{t(lang, 'home.title')}</h1>
-    <p class="lead">{t(lang, 'home.lead')}</p>
-    <p class="sub">{t(lang, 'home.sub')}</p>
-  </header>
+  <section class="hero wrap">
+    <p class="eyebrow rise">{t(lang, 'home.eyebrow')}</p>
+    <h1 class="display rise rise-2" set:html={t(lang, 'home.titleHtml')} />
+    <p class="hero-lead rise rise-3">{t(lang, 'home.lead')} {t(lang, 'home.sub')}</p>
+    <ul class="chips rise rise-4" aria-label="What you get">
+      {[1, 2, 3, 4].map((n) => <li class="chip"><span class="dot" aria-hidden="true"></span>{t(lang, `home.chip${n}`)}</li>)}
+    </ul>
+  </section>
 
-  <section aria-labelledby="list">
-    <h2 id="list" class="visually-hidden">{t(lang, 'projects.title')}</h2>
-    <ul class="project-list">
-      {projects.map((e) => (
-        <li>
-          <a href={`${p}/projects/${e.id}/`}>
-            <span class="p-meta">
-              <time class="meta" datetime={e.data.date.toISOString().slice(0, 10)}>{formatDate(e.data.date)}</time>
-              {e.data.status === 'placeholder' && <span class="tag">{t(lang, 'projects.inProgress')}</span>}
-            </span>
-            <span class="p-title">{e.data.title}</span>
-            <span class="p-summary">{e.data.summary}</span>
+  <section id="projects" class="wrap block" aria-labelledby="projects-title">
+    <div class="block-head">
+      <h2 id="projects-title" class="display">{t(lang, 'home.projects')}</h2>
+      <span class="meta">{String(projects.length).padStart(2, '0')}</span>
+    </div>
+    <ul class="cards">
+      {projects.map((e, i) => (
+        <li class="card">
+          <a href={`${p}/projects/${e.id}/`} class="card-link">
+            {e.data.cover && (
+              <div class="card-media">
+                <Image src={e.data.cover} alt="" widths={[560, 1120]} sizes="(min-width: 900px) 560px, 100vw" loading={i < 2 ? 'eager' : 'lazy'} />
+              </div>
+            )}
+            <div class="card-body">
+              <ul class="chips" aria-label="Tags">
+                {e.data.schedule && <li class="chip accent"><span class="dot" aria-hidden="true"></span>{t(lang, 'projects.daily')}</li>}
+                {e.data.status === 'placeholder' && <li class="chip muted">{t(lang, 'projects.inProgress')}</li>}
+              </ul>
+              <h3 class="display card-title">{e.data.title}</h3>
+              <p class="card-summary">{e.data.summary}</p>
+              <span class="card-cta">{t(lang, 'home.view')} <span aria-hidden="true">→</span></span>
+            </div>
           </a>
         </li>
       ))}
     </ul>
   </section>
+
+  <section id="how" class="wrap block" aria-labelledby="how-title">
+    <div class="block-head">
+      <h2 id="how-title" class="display">{t(lang, 'home.howTitle')}</h2>
+    </div>
+    <ol class="how">
+      {how.map((h) => (
+        <li>
+          <span class="how-no display" aria-hidden="true">{h.n}</span>
+          <h3>{h.title}</h3>
+          <p>{h.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
 </Base>
+
+<style>
+  .hero { padding-top: clamp(56px, 10vw, 120px); padding-bottom: clamp(40px, 6vw, 72px); }
+  .hero h1 { font-size: clamp(3.4rem, 10.5vw, 8.5rem); margin: 22px 0 28px; max-width: 11ch; }
+  .hero-lead { font-size: clamp(1.15rem, 1.9vw, 1.4rem); line-height: 1.5; color: var(--ink-2); max-width: 44ch; margin-bottom: 32px; }
+
+  .block { margin-top: clamp(48px, 7vw, 96px); scroll-margin-top: 80px; }
+  .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 18px; margin-bottom: 28px; border-bottom: 1px solid var(--line); }
+
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
+  @media (min-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+  .card-link {
+    display: flex; flex-direction: column; height: 100%; text-decoration: none;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+  }
+  .card-link:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--line-2); }
+  .card-media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface-2); }
+  .card-media :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+  .card-link:hover .card-media :global(img) { transform: scale(1.03); }
+  .card-body { display: grid; gap: 12px; padding: 24px 24px 26px; flex: 1; align-content: start; }
+  @media (min-width: 760px) { .card-body { padding: 28px 32px 32px; } }
+  .card-title { font-size: clamp(2rem, 3.4vw, 2.6rem); }
+  .card-summary { color: var(--ink-2); margin: 0; }
+  .card-cta { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; margin-top: 6px; }
+  .card-cta span { transition: transform 0.25s var(--ease); }
+  .card-link:hover .card-cta { color: var(--accent); }
+  .card-link:hover .card-cta span { transform: translateX(4px); }
+
+  .how { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  @media (min-width: 900px) { .how { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+  .how li { border-top: 1px solid var(--ink); padding-top: 20px; display: grid; gap: 8px; align-content: start; }
+  .how-no { font-size: 3.2rem; color: var(--accent); }
+  .how p { color: var(--ink-2); margin: 0; max-width: 36ch; }
+</style>

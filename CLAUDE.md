@@ -8,4 +8,4 @@ A static Astro site of reusable AI projects, deployed to GitHub Pages by `.githu
 - **Generic project names.** Titles say plainly what the thing is ("Personal Daily Newspaper"), never the owner's nickname for it. Folder name and skill `name` follow the same generic wording.
 - **Daily projects are hands-off.** A skill meant to run every day must offer to create a daily scheduled task at the end of its first run, put all preferences in the scheduled task prompt, and never ask questions during scheduled runs. Set `schedule:` in the project's front matter. Use `src/content/projects/daily-newspaper/skill/SKILL.md` as the template.
 - **Beginner guides** have at most three steps.
-- **Copy style.** English (UK spelling), DD/MM/YYYY dates, metric units, no em dashes. Plain editorial design: no drawing or blueprint theme, no purple gradients, no emoji icon grids.
+- **Copy style.** English (UK spelling), DD/MM/YYYY dates, metric units, no em dashes. Contemporary editorial design, light only (never add dark mode): Instrument Serif headlines, Geist text, one vermilion accent. No drawing or blueprint theme, no purple gradients, no emoji icon grids.

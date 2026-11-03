@@ -2,8 +2,13 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="Not found" description="This page does not exist.">
-  <header class="page-head">
-    <h1>This page does not exist.</h1>
-    <p class="lead"><a href="/">See all projects</a></p>
-  </header>
+  <section class="wrap nf">
+    <p class="eyebrow">404</p>
+    <h1 class="display">This page <em>does not exist.</em></h1>
+    <a class="btn" href="/">See all projects</a>
+  </section>
 </Base>
+<style>
+  .nf { padding-top: clamp(64px, 12vw, 140px); display: grid; gap: 24px; justify-items: start; }
+  .nf h1 { font-size: clamp(3rem, 8vw, 6rem); max-width: 12ch; }
+</style>

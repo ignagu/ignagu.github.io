@@ -4,11 +4,8 @@ summary: A one page newspaper for you or your family, on the topics you choose. 
 date: 2026-11-02
 status: placeholder
 schedule: Every morning, at the time you choose
-cover: ./screenshots/01-edition.svg
-screenshots:
-  - src: ./screenshots/01-edition.svg
-    alt: Placeholder for a screenshot of a one page daily newspaper.
-    caption: Today's edition
+cover: ./cover.svg
+screenshots: []
 steps:
   - "<strong>Add the Skill to Claude.</strong> Download it with the button on this page. In Claude, open <em>Customize</em>, then <em>Skills</em>, click <em>+</em>, choose <em>Upload a skill</em>, pick the .zip, and switch it on."
   - "<strong>Make your first edition.</strong> In a new chat, type: <em>Make my daily newspaper.</em> Claude asks a few quick questions (topics, language, delivery time) and shows you today's edition."
@@ -20,4 +17,4 @@ A newspaper that fits on one page and takes five minutes to read. You pick the s
 
 It is designed to be read on a phone or printed on a single A4 page.
 
-**This page is a placeholder.** Screenshots and the final Skill are coming soon.
+**In progress.** Real screenshots and the final Skill are coming soon. The illustration above shows the idea.
