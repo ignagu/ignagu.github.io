@@ -13,8 +13,8 @@ const src = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparen
     <noscript><a href={`https://tally.so/r/${formId}`}>Open the feedback form</a></noscript>
   </>
 ) : (
-  <p class="tally-placeholder label">{t(lang, 'projects.feedbackSoon')}</p>
+  <p class="tally-placeholder meta">{t(lang, 'projects.feedbackSoon')}</p>
 )}
 <style>
-  .tally-placeholder { border: 1px dashed var(--line); padding: 24px; text-align: center; }
+  .tally-placeholder { border: 1px solid var(--line); border-radius: 6px; padding: 24px; text-align: center; }
 </style>

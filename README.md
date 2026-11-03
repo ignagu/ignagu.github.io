@@ -83,4 +83,4 @@ The site is English first and ready for Spanish and French:
 
 ## Design notes
 
-Direction A, "Drawing Sheet": every page is a drawing sheet with a frame, zone marks and a title block. The home page is the drawing register and each project is a numbered sheet (B-01, B-02...). Typefaces are IBM Plex Sans, Sans Condensed and Mono, self hosted. One accent colour, drafting blue. Dates are DD/MM/YYYY, units are metric, and copy uses no em dashes (the scan checks this).
+Plain and editorial: warm off-white paper (dark mode follows the system), ink text, one blue accent. Typefaces are IBM Plex Sans, Sans Condensed (headings) and Mono (dates), self hosted. Dates are DD/MM/YYYY, units are metric, and copy uses no em dashes (the scan checks this).

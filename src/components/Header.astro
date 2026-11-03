@@ -5,5 +5,5 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 ---
 <header class="site-header">
-  <a class="brand" href={`${langPrefix(lang)}/`}><b>{site.handle}</b> / {site.name}</a>
+  <a class="brand" href={`${langPrefix(lang)}/`}>{site.handle}</a>
 </header>

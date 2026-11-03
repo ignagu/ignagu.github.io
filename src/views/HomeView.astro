@@ -1,9 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionHead from '../components/SectionHead.astro';
-import Register from '../components/Register.astro';
 import site from '../data/site.json';
 import { t, langPrefix, type Lang } from '../i18n';
+import { formatDate } from '../lib/format';
 import { getProjects } from '../lib/content';
 
 interface Props { lang: Lang }
@@ -11,28 +10,28 @@ const { lang } = Astro.props;
 const p = langPrefix(lang);
 const projects = await getProjects(lang);
 ---
-<Base title={site.name} description={site.description} lang={lang} sheet="B-00" sheetTitle="Drawing register">
-  <header class="page-head hero">
-    <span class="label">{t(lang, 'home.kicker')}</span>
+<Base title={site.name} description={site.description} lang={lang}>
+  <header class="page-head">
     <h1>{t(lang, 'home.title')}</h1>
     <p class="lead">{t(lang, 'home.lead')}</p>
     <p class="sub">{t(lang, 'home.sub')}</p>
   </header>
 
-  <section class="section" aria-labelledby="reg">
-    <SectionHead ref="B" title={t(lang, 'home.register')} id="reg" />
-    <Register
-      lang={lang}
-      caption={t(lang, 'home.register')}
-      showStatus
-      rows={projects.map(({ entry, sheet }) => ({
-        sheet, href: `${p}/projects/${entry.id}/`, title: entry.data.title, summary: entry.data.summary, date: entry.data.date,
-        status: entry.data.status === 'placeholder' ? 'In progress' : 'Issued',
-      }))}
-    />
+  <section aria-labelledby="list">
+    <h2 id="list" class="visually-hidden">{t(lang, 'projects.title')}</h2>
+    <ul class="project-list">
+      {projects.map((e) => (
+        <li>
+          <a href={`${p}/projects/${e.id}/`}>
+            <span class="p-meta">
+              <time class="meta" datetime={e.data.date.toISOString().slice(0, 10)}>{formatDate(e.data.date)}</time>
+              {e.data.status === 'placeholder' && <span class="tag">{t(lang, 'projects.inProgress')}</span>}
+            </span>
+            <span class="p-title">{e.data.title}</span>
+            <span class="p-summary">{e.data.summary}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 </Base>
-
-<style>
-  .hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); line-height: 0.95; letter-spacing: -0.025em; max-width: 14ch; }
-</style>

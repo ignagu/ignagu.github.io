@@ -8,17 +8,12 @@ import '../styles/global.css';
 import site from '../data/site.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import TitleBlock from '../components/TitleBlock.astro';
 import { htmlLang, ogLocale, type Lang } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
   lang?: Lang;
-  sheet: string;
-  sheetTitle: string;
-  date?: Date;
-  rev?: string;
   image?: string;
   type?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
@@ -28,10 +23,6 @@ const {
   title,
   description,
   lang = 'en',
-  sheet,
-  sheetTitle,
-  date,
-  rev,
   image = '/og/default.png',
   type = 'website',
   jsonLd,
@@ -52,8 +43,8 @@ const ogImage = new URL(image, site.url).href;
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#14171b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={site.name} />
@@ -73,16 +64,11 @@ const ogImage = new URL(image, site.url).href;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="sheet">
+    <div class="page">
       <Header lang={lang} />
-      <div class="frame">
-        <div class="zones top" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
-        <main id="main" class="frame-inner">
-          <slot />
-          <TitleBlock sheet={sheet} title={sheetTitle} date={date} rev={rev} />
-        </main>
-        <div class="zones bottom" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
-      </div>
+      <main id="main">
+        <slot />
+      </main>
       <Footer lang={lang} />
     </div>
   </body>

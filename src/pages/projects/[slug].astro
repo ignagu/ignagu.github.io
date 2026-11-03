@@ -2,7 +2,6 @@
 import { render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import SectionHead from '../../components/SectionHead.astro';
 import TallyEmbed from '../../components/TallyEmbed.astro';
 import { t } from '../../i18n';
 import { formatDate } from '../../lib/format';
@@ -10,19 +9,24 @@ import { getProjects } from '../../lib/content';
 
 export async function getStaticPaths() {
   const items = await getProjects('en');
-  return items.map(({ entry, sheet }) => ({ params: { slug: entry.id }, props: { entry, sheet } }));
+  return items.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
-const { entry, sheet } = Astro.props;
+const { entry } = Astro.props;
 const lang = entry.data.lang;
 const { Content } = await render(entry);
 const d = entry.data;
 const skillHref = `/downloads/skills/${entry.id}.zip`;
 ---
-<Base title={d.title} description={d.summary} lang={lang} sheet={sheet} sheetTitle={d.title} date={d.date} type="article"
+<Base title={d.title} description={d.summary} lang={lang} type="article"
   image={d.cover && d.cover.format !== 'svg' ? d.cover.src : undefined}>
   <header class="page-head">
-    <span class="label">{sheet} · <a href="/">{t(lang, 'projects.title')}</a> · {formatDate(d.date)}{d.status === 'placeholder' && ' · In progress'}</span>
+    <p class="meta crumbs">
+      <a href="/">← {t(lang, 'projects.back')}</a>
+      <span aria-hidden="true">·</span>
+      <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time>
+      {d.status === 'placeholder' && <span class="tag">{t(lang, 'projects.inProgress')}</span>}
+    </p>
     <h1>{d.title}</h1>
     <p class="lead">{d.summary}</p>
     <p><a class="btn" href={skillHref} download>
@@ -32,18 +36,18 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
   </header>
 
   <section class="section" aria-labelledby="what">
-    <SectionHead ref="1" title={t(lang, 'projects.what')} id="what" />
+    <h2 id="what">{t(lang, 'projects.what')}</h2>
     <div class="prose"><Content /></div>
   </section>
 
   {d.screenshots.length > 0 && (
     <section class="section" aria-labelledby="shots">
-      <SectionHead ref="2" title={t(lang, 'projects.screens')} id="shots" />
+      <h2 id="shots">{t(lang, 'projects.screens')}</h2>
       <div class="shots">
         {d.screenshots.map((s, i) => (
           <figure>
             <Image src={s.src} alt={s.alt} widths={[480, 960]} sizes="(min-width: 860px) 50vw, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
-            <figcaption class="label">Fig. {i + 1}{s.caption && ` · ${s.caption}`}</figcaption>
+            {s.caption && <figcaption class="meta">{s.caption}</figcaption>}
           </figure>
         ))}
       </div>
@@ -51,37 +55,39 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
   )}
 
   <section class="section" aria-labelledby="how">
-    <SectionHead ref="3" title={t(lang, 'projects.how')} id="how" />
+    <h2 id="how">{t(lang, 'projects.how')}</h2>
     <p class="sub">{t(lang, 'projects.howIntro')}</p>
     <ol class="steps">
       {d.steps.map((s, i) => (
-        <li><span class="step-no" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span set:html={s} /></li>
+        <li><span class="step-no" aria-hidden="true">{i + 1}</span><span set:html={s} /></li>
       ))}
     </ol>
     <p class="download">
       <a class="btn" href={skillHref} download>{t(lang, 'projects.download')}</a>
-      <span class="label">{t(lang, 'projects.downloadNote')}</span>
+      <span class="meta">{t(lang, 'projects.downloadNote')}</span>
     </p>
   </section>
 
   <section class="section" aria-labelledby="fb">
-    <SectionHead ref="4" title={t(lang, 'projects.feedback')} id="fb" />
+    <h2 id="fb">{t(lang, 'projects.feedback')}</h2>
     <p class="sub">{t(lang, 'projects.feedbackIntro')}</p>
     <TallyEmbed formId={d.tallyId} title={d.title} lang={lang} />
   </section>
 </Base>
 
 <style>
+  .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0; }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
   .shots { display: grid; gap: 24px; }
-  @media (min-width: 860px) { .shots { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 760px) { .shots { grid-template-columns: repeat(2, 1fr); } }
   figure { margin: 0; }
-  figure :global(img) { border: 1px solid var(--line-strong); width: 100%; }
+  figure :global(img) { border: 1px solid var(--line); border-radius: 6px; width: 100%; }
   figcaption { margin-top: 8px; }
-  .steps { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 0; counter-reset: s; }
-  @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
-  .steps li { display: grid; align-content: start; gap: 10px; padding: 20px 20px 20px 0; border-top: 1px solid var(--line-strong); }
-  @media (min-width: 860px) { .steps li + li { padding-left: 20px; border-left: 1px solid var(--line); } }
-  .step-no { font-family: var(--font-cond); font-weight: 600; font-size: 2.2rem; line-height: 1; color: var(--accent); }
+  .steps { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 16px; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+  .steps li { display: grid; align-content: start; gap: 8px; padding: 20px; background: var(--paper-2); border-radius: 6px; }
+  .step-no { font-family: var(--font-head); font-weight: 600; font-size: 1.6rem; line-height: 1; color: var(--accent); }
   .download { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
   .sub { color: var(--ink-2); max-width: var(--measure); }
 </style>

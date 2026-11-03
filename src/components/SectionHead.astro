@@ -1,9 +1,0 @@
----
-interface Props { ref: string; title: string; id?: string }
-const { ref, title, id } = Astro.props;
----
-<div class="section-head">
-  <span class="marker" aria-hidden="true">{ref}</span>
-  <h2 id={id}>{title}</h2>
-  <slot />
-</div>

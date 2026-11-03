@@ -1,10 +1,8 @@
 {
   "skip": "Skip to content",
-  "home.kicker": "B-00 · Drawing register",
   "home.title": "AI projects, ready to reuse",
   "home.lead": "Small tools built with Claude, packaged so anyone can use them.",
   "home.sub": "Each project comes with a three step guide for AI beginners, a downloadable Claude Skill, and a feedback form. No login needed.",
-  "home.register": "Drawing register",
   "projects.title": "Projects",
   "projects.what": "What it does",
   "projects.screens": "Screenshots",
@@ -17,8 +15,6 @@
   "projects.feedbackSoon": "The feedback form for this project is coming soon.",
   "footer.contact": "LinkedIn",
   "footer.note": "Built with Astro. No trackers, no cookies.",
-  "col.no": "No.",
-  "col.title": "Title",
-  "col.date": "Date",
-  "col.status": "Status"
+  "projects.inProgress": "In progress",
+  "projects.back": "All projects"
 }
