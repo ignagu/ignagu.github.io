@@ -17,8 +17,8 @@ h1{font-family:D;font-weight:400;font-size:132px;line-height:.95;letter-spacing:
 h1 em{color:#e2481c}
 .u{position:absolute;left:88px;bottom:72px;font-size:26px;color:#4b4b48}
 .o{position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:#fbe7df}
-</style></head><body><div class="o"></div><div class="c"><div class="e">Built with Claude · Free to reuse</div>
-<h1>AI projects,<br><em>ready to reuse.</em></h1></div><div class="u">ignagu.github.io</div></body></html>`;
+</style></head><body><div class="o"></div><div class="c"><div class="e">No GitHub · No code · Just Claude</div>
+<h1>Useful AI tools,<br><em>no setup.</em></h1></div><div class="u">ignagu.github.io</div></body></html>`;
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
 await p.setContent(html);

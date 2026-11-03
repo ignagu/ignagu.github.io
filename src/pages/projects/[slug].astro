@@ -34,6 +34,7 @@ const downloadIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v
       <a class="btn" href={skillHref} download><Fragment set:html={downloadIcon} />{t(lang, 'projects.download')}</a>
       <a class="btn secondary" href="#how">{t(lang, 'projects.howJump')}</a>
     </div>
+    <p class="meta rise rise-4">{t(lang, 'projects.downloadNote')}</p>
   </header>
 
   {d.cover && (
@@ -87,7 +88,7 @@ const downloadIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v
       )}
       <div class="download">
         <a class="btn" href={skillHref} download><Fragment set:html={downloadIcon} />{t(lang, 'projects.download')}</a>
-        <span class="meta">{t(lang, 'projects.downloadNote')}</span>
+        <span class="download-note"><strong>{t(lang, 'projects.downloadNote')}</strong> {t(lang, 'projects.downloadHow')}</span>
       </div>
     </div>
   </section>
@@ -151,6 +152,8 @@ const downloadIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v
   .schedule .meta { color: rgb(247 246 242 / 0.6); }
   .schedule .chip.accent { background: var(--accent); color: #fff; }
 
+  .download-note { font-size: 0.9rem; color: var(--ink-3); max-width: 44ch; }
+  .download-note strong { color: var(--ink-2); font-weight: 500; }
   .download { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 28px; }
 
   .feedback { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }

@@ -2,8 +2,8 @@
   "url": "https://ignagu.github.io",
   "name": "AI Projects",
   "handle": "ignagu",
-  "tagline": "Small tools built with Claude, ready to reuse",
-  "description": "Small AI tools built with Claude, each with a three step guide for beginners and a downloadable Claude Skill.",
+  "tagline": "Useful AI tools, no setup",
+  "description": "Useful AI tools built with Claude, shared so anyone can use them. No GitHub, no code: download one file, add it to Claude, done.",
   "linkedin": "",
   "_notes": "linkedin: paste your full profile URL (https://www.linkedin.com/in/...). Leave empty to hide the LinkedIn link."
 }
