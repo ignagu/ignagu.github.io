@@ -17,7 +17,6 @@
   "footer.note": "Built with Astro. No trackers, no cookies.",
   "projects.inProgress": "In progress",
   "projects.back": "All projects",
-  "projects.scheduleTitle": "Hands-off, every day",
   "projects.scheduleText": "Once scheduled, it runs on its own, even when your computer is off. You find each new result under Scheduled in Claude's sidebar, and you can pause or change it there at any time.",
   "projects.schedulePlan": "Scheduling needs a paid Claude plan (Pro or above).",
   "nav.projects": "Projects",
@@ -25,7 +24,7 @@
   "home.eyebrow": "Built with Claude · Free to reuse",
   "home.chip1": "Three step guides",
   "home.chip2": "Downloadable Claude Skills",
-  "home.chip3": "Runs daily on its own",
+  "home.chip3": "Runs on its own, on schedule",
   "home.chip4": "Feedback, no login",
   "home.projects": "Projects",
   "home.view": "View project",
@@ -35,8 +34,13 @@
   "home.how2t": "Add it to Claude",
   "home.how2": "Upload it once under Customize, Skills. It works in the Claude app on your computer, phone or browser.",
   "home.how3t": "Let it run",
-  "home.how3": "Ask for the first result, then let Claude schedule it. Daily projects keep arriving with no effort.",
-  "projects.daily": "Daily",
+  "home.how3": "Ask for the first result, then let Claude schedule it. Scheduled projects keep arriving with no effort.",
   "projects.howJump": "How to use it",
-  "home.titleHtml": "AI projects, <em>ready to reuse.</em>"
+  "home.titleHtml": "AI projects, <em>ready to reuse.</em>",
+  "freq.daily": "Daily",
+  "freq.weekly": "Weekly",
+  "freq.monthly": "Monthly",
+  "projects.scheduleTitle.daily": "Hands-off, every day",
+  "projects.scheduleTitle.weekly": "Hands-off, every week",
+  "projects.scheduleTitle.monthly": "Hands-off, every month"
 }

@@ -3,6 +3,7 @@ title: Personal Daily Newspaper
 summary: A one page newspaper for you or your family, on the topics you choose. Set it up once and a fresh edition arrives every morning.
 date: 2026-11-02
 status: placeholder
+frequency: daily
 schedule: Every morning, at the time you choose
 cover: ./cover.svg
 screenshots: []

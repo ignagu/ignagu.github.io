@@ -29,7 +29,8 @@ The scan also runs automatically:
 **Two rules for every project:**
 
 - **Generic names.** The title says plainly what it is ("Personal Daily Newspaper", "Nightly Bedtime Story"), never a nickname I gave it. People will name their own copy. The folder name and the skill `name` use the same generic words (`daily-newspaper`).
-- **Anything daily must be truly hands-off.** If a project is meant to run every day, its `SKILL.md` must (1) end the first run by offering to create a daily scheduled task, (2) put every preference inside the scheduled task's prompt, and (3) have scheduled runs that never ask questions or wait for approval. The project page sets `schedule:` and the third step is "Make it daily". Copy `daily-newspaper/skill/SKILL.md` as the template.
+- **Anything recurring must be truly hands-off.** If a project is meant to run on a schedule (daily, weekly or monthly), its `SKILL.md` must (1) end the first run by offering to create the scheduled task, (2) put every preference inside the scheduled task's prompt, and (3) have scheduled runs that never ask questions or wait for approval. The project page sets `frequency:` and `schedule:`, and the third step is "Make it daily" (or weekly, monthly). Copy `daily-newspaper/skill/SKILL.md` (daily) or `bills-and-subscriptions/skill/SKILL.md` (monthly) as the template.
+- **Generic tools.** Never tie a project to one provider. Say "your email (any service with a Claude connector)", not a brand name, and tell the skill to use whichever connector is available.
 
 1. Copy an existing folder in `src/content/projects/`, for example `daily-newspaper/`, and rename it with a generic name (the folder name becomes the URL: `/projects/<folder>/`).
 2. Edit `index.md`:
@@ -37,7 +38,7 @@ The scan also runs automatically:
    - `status: live` once it is finished (or `placeholder` while it is in progress).
    - `screenshots`: images placed in the `screenshots/` folder, each with a short `alt` text describing it.
    - `steps`: at most three steps for AI beginners. Uploading a skill: *Customize*, *Skills*, *+*, *Upload a skill*, then switch it on.
-   - `schedule`: for daily projects, when it arrives, e.g. `Every morning, at the time you choose`. This shows the "Hands-off, every day" note.
+   - `frequency` (`daily`, `weekly` or `monthly`) and `schedule` (when it arrives, e.g. `Every morning, at the time you choose`) for scheduled projects. These show the frequency tag and the "Hands-off" note.
    - `tallyId`: the ID of the Tally form (see below). Leave empty to show a "coming soon" note.
    - The Markdown body is the "What it does" section.
 3. Put the Claude Skill files in the `skill/` folder (at least a `SKILL.md` whose `name` matches the folder name, with a `description` under 200 characters). The downloadable `.zip` is built automatically. Do not commit zips.

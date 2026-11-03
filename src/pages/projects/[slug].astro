@@ -24,7 +24,7 @@ const downloadIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v
   <header class="wrap p-hero">
     <a class="back meta rise" href="/">← {t(lang, 'projects.back')}</a>
     <ul class="chips rise" aria-label="Tags">
-      {d.schedule && <li class="chip accent"><span class="dot" aria-hidden="true"></span>{t(lang, 'projects.daily')}</li>}
+      {d.frequency && <li class="chip accent"><span class="dot" aria-hidden="true"></span>{t(lang, `freq.${d.frequency}`)}</li>}
       {d.status === 'placeholder' && <li class="chip muted">{t(lang, 'projects.inProgress')}</li>}
       <li class="chip muted"><time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time></li>
     </ul>
@@ -80,7 +80,7 @@ const downloadIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v
       {d.schedule && (
         <aside class="schedule" aria-labelledby="sched-title">
           <span class="chip accent"><span class="dot" aria-hidden="true"></span>{d.schedule}</span>
-          <h3 id="sched-title">{t(lang, 'projects.scheduleTitle')}</h3>
+          <h3 id="sched-title">{t(lang, `projects.scheduleTitle.${d.frequency ?? 'daily'}`)}</h3>
           <p>{t(lang, 'projects.scheduleText')}</p>
           <p class="meta">{t(lang, 'projects.schedulePlan')}</p>
         </aside>

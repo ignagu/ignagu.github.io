@@ -3,6 +3,7 @@ title: Nightly Bedtime Story
 summary: A calm, age appropriate story to read aloud. Set it up once and a new story is ready every evening.
 date: 2026-11-01
 status: placeholder
+frequency: daily
 schedule: Every evening, at the time you choose
 cover: ./cover.svg
 screenshots: []

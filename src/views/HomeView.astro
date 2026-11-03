@@ -37,7 +37,7 @@ const how = [1, 2, 3].map((n) => ({ n, title: t(lang, `home.how${n}t`), text: t(
             )}
             <div class="card-body">
               <ul class="chips" aria-label="Tags">
-                {e.data.schedule && <li class="chip accent"><span class="dot" aria-hidden="true"></span>{t(lang, 'projects.daily')}</li>}
+                {e.data.frequency && <li class="chip accent"><span class="dot" aria-hidden="true"></span>{t(lang, `freq.${e.data.frequency}`)}</li>}
                 {e.data.status === 'placeholder' && <li class="chip muted">{t(lang, 'projects.inProgress')}</li>}
               </ul>
               <h3 class="display card-title">{e.data.title}</h3>

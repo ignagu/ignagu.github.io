@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#1f3a2c" flood-opacity="0.22"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="#e4eee3"/>
+  <circle cx="1420" cy="760" r="280" fill="#d3e4d1"/>
+  <circle cx="140" cy="120" r="180" fill="#d3e4d1"/>
+  <g transform="translate(300 110) rotate(-2 500 340)" filter="url(#s)">
+    <rect width="1000" height="680" rx="20" fill="#ffffff"/>
+    <text x="56" y="84" font-family="ui-monospace, Menlo, monospace" font-size="16" letter-spacing="2" fill="#7a7974">THIS MONTH</text>
+    <text x="56" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="64" fill="#121212">€ 412,80</text>
+    <text x="56" y="190" font-family="system-ui, sans-serif" font-size="20" fill="#4b4b48">across 11 bills and subscriptions</text>
+    <g transform="translate(560 64)">
+      <text x="0" y="16" font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="2" fill="#7a7974">COST PER MONTH</text>
+      <g fill="#cfe0cd"><rect x="0" y="66" width="30" height="60" rx="4"/><rect x="42" y="56" width="30" height="70" rx="4"/><rect x="84" y="60" width="30" height="66" rx="4"/><rect x="126" y="48" width="30" height="78" rx="4"/><rect x="168" y="52" width="30" height="74" rx="4"/><rect x="210" y="40" width="30" height="86" rx="4"/><rect x="252" y="44" width="30" height="82" rx="4"/><rect x="294" y="32" width="30" height="94" rx="4"/></g>
+      <rect x="336" y="26" width="30" height="100" rx="4" fill="#e2481c"/>
+    </g>
+    <rect x="56" y="232" width="888" height="1" fill="#e3e1da"/>
+    <g font-family="system-ui, sans-serif" font-size="22" fill="#121212">
+      <g transform="translate(56 256)"><rect width="44" height="44" rx="12" fill="#fde8c8"/><text x="68" y="20">Electricity</text><text x="68" y="44" font-size="16" fill="#7a7974">Monthly · usage up, price down</text><text x="888" y="30" text-anchor="end">€ 86,40</text></g>
+      <g transform="translate(56 336)"><rect width="44" height="44" rx="12" fill="#d8e6f6"/><text x="68" y="20">Phone and internet</text><text x="68" y="44" font-size="16" fill="#7a7974">Monthly</text><text x="888" y="30" text-anchor="end">€ 45,00</text></g>
+      <g transform="translate(56 416)"><rect width="44" height="44" rx="12" fill="#f1dcef"/><text x="68" y="20">Streaming</text><text x="68" y="44" font-size="16" fill="#e2481c">Price rise: +15%</text><text x="888" y="30" text-anchor="end">€ 13,99</text></g>
+      <g transform="translate(56 496)"><rect width="44" height="44" rx="12" fill="#d9eed9"/><text x="68" y="20">Home insurance</text><text x="68" y="44" font-size="16" fill="#7a7974">Yearly · renews in 24 days</text><text x="888" y="30" text-anchor="end">€ 31,25</text></g>
+    </g>
+    <rect x="56" y="580" width="888" height="1" fill="#e3e1da"/>
+    <g transform="translate(56 606)">
+      <rect width="300" height="40" rx="20" fill="#fbe7df"/>
+      <circle cx="22" cy="20" r="5" fill="#e2481c"/>
+      <text x="40" y="27" font-family="system-ui, sans-serif" font-size="17" fill="#a8310f">2 renewals in the next 60 days</text>
+    </g>
+  </g>
+</svg>
