@@ -26,15 +26,21 @@ The scan also runs automatically:
 
 ## Add a project
 
-1. Copy an existing folder in `src/content/projects/`, for example `the-745/`, and rename it (the folder name becomes the URL: `/projects/<folder>/`).
+**Two rules for every project:**
+
+- **Generic names.** The title says plainly what it is ("Personal Daily Newspaper", "Nightly Bedtime Story"), never a nickname I gave it. People will name their own copy. The folder name and the skill `name` use the same generic words (`daily-newspaper`).
+- **Anything daily must be truly hands-off.** If a project is meant to run every day, its `SKILL.md` must (1) end the first run by offering to create a daily scheduled task, (2) put every preference inside the scheduled task's prompt, and (3) have scheduled runs that never ask questions or wait for approval. The project page sets `schedule:` and the third step is "Make it daily". Copy `daily-newspaper/skill/SKILL.md` as the template.
+
+1. Copy an existing folder in `src/content/projects/`, for example `daily-newspaper/`, and rename it with a generic name (the folder name becomes the URL: `/projects/<folder>/`).
 2. Edit `index.md`:
    - `title`, `summary`, `date` (YYYY-MM-DD; shown as DD/MM/YYYY).
    - `status: live` once it is finished (or `placeholder` while it is in progress).
    - `screenshots`: images placed in the `screenshots/` folder, each with a short `alt` text describing it.
-   - `steps`: at most three steps for AI beginners.
+   - `steps`: at most three steps for AI beginners. Uploading a skill: *Customize*, *Skills*, *+*, *Upload a skill*, then switch it on.
+   - `schedule`: for daily projects, when it arrives, e.g. `Every morning, at the time you choose`. This shows the "Hands-off, every day" note.
    - `tallyId`: the ID of the Tally form (see below). Leave empty to show a "coming soon" note.
    - The Markdown body is the "What it does" section.
-3. Put the Claude Skill files in the `skill/` folder (at least a `SKILL.md`). The downloadable `.zip` is built automatically. Do not commit zips.
+3. Put the Claude Skill files in the `skill/` folder (at least a `SKILL.md` whose `name` matches the folder name, with a `description` under 200 characters). The downloadable `.zip` is built automatically. Do not commit zips.
 4. Check the screenshots and every skill file against the privacy checklist, then commit and push.
 
 Add `draft: true` to the front matter to keep a project off the live site.

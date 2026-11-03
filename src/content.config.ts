@@ -14,6 +14,8 @@ const projects = defineCollection({
       cover: image().optional(),
       screenshots: z.array(z.object({ src: image(), alt: z.string(), caption: z.string().optional() })).default([]),
       steps: z.array(z.string()).min(1).max(3),
+      // For projects meant to run on their own: when it arrives, e.g. "Every morning, at the time you choose".
+      schedule: z.string().optional(),
       tallyId: z.string().default(''),
       draft: z.boolean().default(false),
     }),

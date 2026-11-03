@@ -9,12 +9,15 @@
   "projects.how": "How to use it",
   "projects.howIntro": "No experience needed. Three steps.",
   "projects.download": "Download the Claude Skill",
-  "projects.downloadNote": "A .zip you can upload to Claude in Settings, under Capabilities, Skills.",
+  "projects.downloadNote": "A .zip file. In Claude, add it under Customize, Skills.",
   "projects.feedback": "Feedback",
   "projects.feedbackIntro": "Tried it? Tell me what worked and what did not. No login needed.",
   "projects.feedbackSoon": "The feedback form for this project is coming soon.",
   "footer.contact": "LinkedIn",
   "footer.note": "Built with Astro. No trackers, no cookies.",
   "projects.inProgress": "In progress",
-  "projects.back": "All projects"
+  "projects.back": "All projects",
+  "projects.scheduleTitle": "Hands-off, every day",
+  "projects.scheduleText": "Once scheduled, it runs on its own, even when your computer is off. You find each new result under Scheduled in Claude's sidebar, and you can pause or change it there at any time.",
+  "projects.schedulePlan": "Scheduling needs a paid Claude plan (Pro or above)."
 }

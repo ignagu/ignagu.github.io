@@ -29,6 +29,7 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
     </p>
     <h1>{d.title}</h1>
     <p class="lead">{d.summary}</p>
+    {d.schedule && <p class="meta">{d.schedule}</p>}
     <p><a class="btn" href={skillHref} download>
       <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M1.5 12.5h11" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       {t(lang, 'projects.download')}
@@ -62,6 +63,13 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
         <li><span class="step-no" aria-hidden="true">{i + 1}</span><span set:html={s} /></li>
       ))}
     </ol>
+    {d.schedule && (
+      <aside class="schedule" aria-label={t(lang, 'projects.scheduleTitle')}>
+        <p class="schedule-title">{t(lang, 'projects.scheduleTitle')}: {d.schedule.charAt(0).toLowerCase() + d.schedule.slice(1)}.</p>
+        <p>{t(lang, 'projects.scheduleText')}</p>
+        <p class="meta">{t(lang, 'projects.schedulePlan')}</p>
+      </aside>
+    )}
     <p class="download">
       <a class="btn" href={skillHref} download>{t(lang, 'projects.download')}</a>
       <span class="meta">{t(lang, 'projects.downloadNote')}</span>
@@ -88,6 +96,9 @@ const skillHref = `/downloads/skills/${entry.id}.zip`;
   @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
   .steps li { display: grid; align-content: start; gap: 8px; padding: 20px; background: var(--paper-2); border-radius: 6px; }
   .step-no { font-family: var(--font-head); font-weight: 600; font-size: 1.6rem; line-height: 1; color: var(--accent); }
+  .schedule { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; margin: 0 0 28px; max-width: var(--measure); }
+  .schedule p { margin: 0 0 6px; }
+  .schedule-title { font-weight: 600; }
   .download { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
   .sub { color: var(--ink-2); max-width: var(--measure); }
 </style>
